@@ -1,0 +1,2629 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SPMB SMP Muhammadiyah 12</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <!-- jsPDF + AutoTable -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <style>
+/* ═══════════════════════════════════════════════════════
+   PPDB SMP MUHAMMADIYAH 12 — CSS UTAMA
+   Tema: Hijau Elegan Muhammadiyah
+══════════════════════════════════════════════════════════ */
+
+:root {
+  /* Palet Hijau Elegan */
+  --hijau-tua:    #1a5c38;   /* hijau tua Muhammadiyah */
+  --hijau-mid:    #217a49;   /* hijau medium */
+  --hijau-muda:   #2d9e5f;   /* hijau terang */
+  --mint:         #a8e6c2;   /* mint lembut */
+  --mint-pale:    #e8f7ef;   /* mint sangat pucat */
+  --putih:        #ffffff;
+  --abu-bg:       #f5f7f6;
+  --abu-border:   #d4e6dc;
+  --abu-text:     #6b7c73;
+  --teks:         #1e2e27;
+  --teks-light:   #4a5e54;
+
+  /* Status warna */
+  --merah:        #e53e3e;
+  --merah-bg:     #fff5f5;
+  --kuning:       #d69e2e;
+  --kuning-bg:    #fffbeb;
+
+  /* Shadows */
+  --shadow-sm:    0 1px 3px rgba(26,92,56,.08);
+  --shadow-md:    0 4px 16px rgba(26,92,56,.12);
+  --shadow-lg:    0 8px 32px rgba(26,92,56,.16);
+
+  /* Border radius */
+  --r-sm: 6px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+
+  /* Sidebar */
+  --sidebar-w: 260px;
+  --topbar-h: 64px;
+
+  /* Fonts */
+  --font-display: 'Plus Jakarta Sans', sans-serif;
+  --font-body:    'Inter', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--abu-bg);
+  color: var(--teks);
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.hidden { display: none !important; }
+
+/* ── SCROLLBAR ─────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--abu-border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--hijau-muda); }
+
+/* ══════════════════════════════════════════════════════════
+   HALAMAN LOGIN
+══════════════════════════════════════════════════════════ */
+.login-page {
+  min-height: 100vh;
+  background: linear-gradient(145deg, var(--hijau-tua) 0%, var(--hijau-mid) 50%, var(--hijau-muda) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.login-bg-shapes { position: absolute; inset: 0; pointer-events: none; }
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,.05);
+}
+.shape-1 { width: 500px; height: 500px; top: -200px; right: -150px; }
+.shape-2 { width: 300px; height: 300px; bottom: -100px; left: -80px; }
+.shape-3 { width: 200px; height: 200px; top: 40%; left: 30%; }
+
+.login-container {
+  width: 100%;
+  max-width: 420px;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.login-logo { text-align: center; color: var(--putih); }
+.logo-icon {
+  width: 72px; height: 72px;
+  background: rgba(255,255,255,.15);
+  border: 2px solid rgba(255,255,255,.3);
+  border-radius: var(--r-xl);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 32px;
+  margin: 0 auto 16px;
+  backdrop-filter: blur(8px);
+}
+.login-logo h1 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.login-logo p { font-size: 13px; opacity: .8; }
+
+.login-card {
+  width: 100%;
+  background: var(--putih);
+  border-radius: var(--r-xl);
+  padding: 32px 28px;
+  box-shadow: var(--shadow-lg);
+}
+.login-card h2 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--hijau-tua);
+  margin-bottom: 4px;
+}
+.login-subtitle { color: var(--abu-text); font-size: 13px; margin-bottom: 24px; }
+
+.form-group { margin-bottom: 16px; }
+.form-group label {
+  display: block;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--teks-light);
+  margin-bottom: 6px;
+}
+.form-group label i { margin-right: 6px; color: var(--hijau-muda); }
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--abu-border);
+  border-radius: var(--r-md);
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--teks);
+  background: var(--putih);
+  transition: border-color .2s, box-shadow .2s;
+  outline: none;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--hijau-muda);
+  box-shadow: 0 0 0 3px rgba(45,158,95,.12);
+}
+.form-group textarea { resize: vertical; min-height: 80px; }
+.form-group select { cursor: pointer; }
+
+.input-pw-wrap { position: relative; }
+.input-pw-wrap input { padding-right: 44px; }
+.btn-eye {
+  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; cursor: pointer; color: var(--abu-text);
+  font-size: 15px; padding: 0; transition: color .2s;
+}
+.btn-eye:hover { color: var(--hijau-muda); }
+
+.btn-login {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, var(--hijau-tua), var(--hijau-muda));
+  color: var(--putih);
+  border: none;
+  border-radius: var(--r-md);
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity .2s, transform .15s;
+  margin-top: 8px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.btn-login:hover { opacity: .9; transform: translateY(-1px); }
+.btn-login:active { transform: translateY(0); }
+
+.alert-error {
+  background: var(--merah-bg);
+  border: 1px solid #fed7d7;
+  color: var(--merah);
+  border-radius: var(--r-md);
+  padding: 10px 14px;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.login-footer { color: rgba(255,255,255,.6); font-size: 12px; text-align: center; }
+
+/* ══════════════════════════════════════════════════════════
+   LAYOUT APLIKASI
+══════════════════════════════════════════════════════════ */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ── SIDEBAR ───────────────────────────────────────────── */
+.sidebar {
+  width: var(--sidebar-w);
+  min-height: 100vh;
+  background: linear-gradient(180deg, var(--hijau-tua) 0%, #14472b 100%);
+  position: fixed;
+  left: 0; top: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  transition: transform .3s ease;
+  box-shadow: 4px 0 24px rgba(26,92,56,.25);
+}
+
+.sidebar-header {
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--putih);
+}
+.sidebar-logo > i {
+  font-size: 24px;
+  color: var(--mint);
+}
+.sidebar-title {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--putih);
+}
+.sidebar-sub {
+  display: block;
+  font-size: 11px;
+  color: rgba(255,255,255,.55);
+  font-weight: 500;
+}
+.sidebar-close {
+  display: none;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,.6);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: var(--r-md);
+  color: rgba(255,255,255,.65);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background .2s, color .2s;
+}
+.nav-item i { width: 18px; text-align: center; font-size: 15px; }
+.nav-item:hover {
+  background: rgba(255,255,255,.1);
+  color: var(--putih);
+}
+.nav-item.active {
+  background: rgba(168,230,194,.15);
+  color: var(--mint);
+  border-left: 3px solid var(--mint);
+}
+
+.sidebar-bottom {
+  padding: 16px 12px;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+.admin-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 4px;
+  margin-bottom: 12px;
+  color: var(--putih);
+}
+.admin-avatar {
+  width: 36px; height: 36px;
+  background: rgba(168,230,194,.2);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--mint);
+  flex-shrink: 0;
+}
+.admin-info strong { display: block; font-size: 13px; }
+.admin-info small { color: rgba(255,255,255,.5); font-size: 11px; }
+
+.btn-logout {
+  width: 100%;
+  padding: 10px;
+  background: rgba(229,62,62,.12);
+  border: 1px solid rgba(229,62,62,.2);
+  color: #fc8181;
+  border-radius: var(--r-md);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  transition: background .2s;
+}
+.btn-logout:hover { background: rgba(229,62,62,.22); }
+
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  z-index: 99;
+}
+
+/* ── MAIN CONTENT ──────────────────────────────────────── */
+.main-content {
+  flex: 1;
+  margin-left: var(--sidebar-w);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── TOPBAR ────────────────────────────────────────────── */
+.topbar {
+  height: var(--topbar-h);
+  background: var(--putih);
+  border-bottom: 1px solid var(--abu-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: var(--shadow-sm);
+}
+.topbar-left { display: flex; align-items: center; gap: 16px; }
+.btn-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: var(--teks-light);
+  cursor: pointer;
+  padding: 6px;
+}
+.topbar-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--hijau-tua);
+}
+.topbar-right { display: flex; align-items: center; gap: 12px; }
+.badge-year {
+  background: var(--mint-pale);
+  color: var(--hijau-tua);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 99px;
+  border: 1px solid var(--abu-border);
+}
+.btn-refresh {
+  width: 36px; height: 36px;
+  background: var(--mint-pale);
+  border: 1px solid var(--abu-border);
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  color: var(--hijau-tua);
+  font-size: 14px;
+  transition: background .2s, transform .3s;
+  display: flex; align-items: center; justify-content: center;
+}
+.btn-refresh:hover { background: var(--mint); transform: rotate(180deg); }
+
+/* ── CONTENT SECTIONS ──────────────────────────────────── */
+.content-section {
+  display: none;
+  padding: 28px 24px;
+  flex: 1;
+}
+.content-section.active { display: block; }
+
+.section-header {
+  margin-bottom: 24px;
+}
+.section-header h2 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--hijau-tua);
+  margin-bottom: 4px;
+}
+.section-header p { color: var(--abu-text); font-size: 13px; }
+
+/* ── STAT CARDS ────────────────────────────────────────── */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.stat-card {
+  border-radius: var(--r-lg);
+  padding: 24px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: transform .2s;
+}
+.stat-card:hover { transform: translateY(-2px); }
+.stat-deco {
+  position: absolute;
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  right: -30px; top: -30px;
+  background: rgba(255,255,255,.1);
+}
+.stat-total { background: linear-gradient(135deg, var(--hijau-tua), var(--hijau-muda)); color: var(--putih); }
+.stat-lunas { background: linear-gradient(135deg, #1a7a49, #27ae60); color: var(--putih); }
+.stat-belum { background: linear-gradient(135deg, #c0392b, #e74c3c); color: var(--putih); }
+.stat-icon {
+  width: 52px; height: 52px;
+  background: rgba(255,255,255,.18);
+  border-radius: var(--r-md);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1;
+}
+.stat-label { font-size: 12px; opacity: .85; margin-top: 4px; font-weight: 500; }
+
+/* ── CHART AREA ────────────────────────────────────────── */
+.chart-wrap {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  align-items: start;
+}
+.chart-card {
+  background: var(--putih);
+  border-radius: var(--r-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--abu-border);
+}
+.chart-card h3 {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--hijau-tua);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.chart-body {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.chart-legend { display: flex; flex-direction: column; gap: 10px; }
+.legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+.legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+
+.info-card { flex: 1; }
+.info-list { display: flex; flex-direction: column; gap: 16px; }
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--abu-border);
+}
+.info-item:last-child { border-bottom: none; padding-bottom: 0; }
+.info-item > i {
+  width: 36px; height: 36px;
+  background: var(--mint-pale);
+  color: var(--hijau-tua);
+  border-radius: var(--r-sm);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.info-item > div { display: flex; flex-direction: column; gap: 2px; }
+.info-item strong { font-size: 12px; color: var(--abu-text); font-weight: 600; }
+.info-item span { font-size: 14px; font-weight: 600; color: var(--teks); }
+.badge-open {
+  background: #d4f7e5;
+  color: #1a5c38;
+  padding: 2px 10px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ── TABLE ─────────────────────────────────────────────── */
+.table-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.search-box {
+  position: relative;
+  flex: 1;
+  min-width: 240px;
+  max-width: 380px;
+}
+.search-box i {
+  position: absolute;
+  left: 12px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--abu-text);
+  font-size: 13px;
+}
+.search-box input {
+  width: 100%;
+  padding: 9px 14px 9px 36px;
+  border: 1.5px solid var(--abu-border);
+  border-radius: var(--r-md);
+  font-size: 13px;
+  font-family: var(--font-body);
+  outline: none;
+  transition: border-color .2s;
+  background: var(--putih);
+}
+.search-box input:focus { border-color: var(--hijau-muda); }
+
+.toolbar-right { display: flex; align-items: center; gap: 10px; }
+.filter-select {
+  padding: 9px 12px;
+  border: 1.5px solid var(--abu-border);
+  border-radius: var(--r-md);
+  font-size: 13px;
+  font-family: var(--font-body);
+  outline: none;
+  background: var(--putih);
+  cursor: pointer;
+  color: var(--teks);
+}
+
+.table-wrap {
+  background: var(--putih);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--abu-border);
+  overflow-x: auto;
+}
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+.data-table thead th {
+  background: var(--mint-pale);
+  color: var(--hijau-tua);
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 2px solid var(--abu-border);
+  white-space: nowrap;
+}
+.data-table tbody tr {
+  border-bottom: 1px solid var(--abu-border);
+  transition: background .15s;
+}
+.data-table tbody tr:last-child { border-bottom: none; }
+.data-table tbody tr:hover { background: #f9fdfb; }
+.data-table tbody td {
+  padding: 12px 16px;
+  font-size: 13px;
+  color: var(--teks);
+  vertical-align: middle;
+}
+.loading-row {
+  text-align: center;
+  color: var(--abu-text);
+  padding: 40px !important;
+}
+.loading-row i { margin-right: 8px; color: var(--hijau-muda); }
+.empty-row { text-align: center; color: var(--abu-text); padding: 48px !important; }
+
+.badge-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.badge-lunas { background: #d4f7e5; color: #1a5c38; }
+.badge-belum { background: #fff0f0; color: #c53030; }
+
+.action-btns { display: flex; gap: 6px; align-items: center; }
+.btn-icon {
+  width: 30px; height: 30px;
+  border: none;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px;
+  transition: opacity .2s, transform .15s;
+}
+.btn-icon:hover { opacity: .85; transform: scale(1.08); }
+.btn-edit { background: #e8f5e9; color: #2e7d32; }
+.btn-delete { background: #fdecea; color: #c53030; }
+.btn-pdf { background: #e3f2fd; color: #1565c0; }
+
+/* PAGINATION */
+.pagination-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 4px 4px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.page-info { color: var(--abu-text); font-size: 13px; }
+.page-controls { display: flex; gap: 6px; }
+.page-btn {
+  min-width: 32px; height: 32px;
+  padding: 0 8px;
+  border: 1.5px solid var(--abu-border);
+  border-radius: var(--r-sm);
+  background: var(--putih);
+  color: var(--teks-light);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .15s;
+}
+.page-btn:hover { border-color: var(--hijau-muda); color: var(--hijau-tua); }
+.page-btn.active { background: var(--hijau-tua); color: var(--putih); border-color: var(--hijau-tua); }
+.page-btn:disabled { opacity: .4; cursor: default; }
+
+/* ── FORM ──────────────────────────────────────────────── */
+.form-card {
+  background: var(--putih);
+  border-radius: var(--r-lg);
+  padding: 32px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--abu-border);
+  max-width: 860px;
+}
+.form-section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--hijau-tua);
+  margin: 24px 0 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--mint-pale);
+}
+.form-section-title:first-child { margin-top: 0; }
+.form-section-title > span {
+  width: 28px; height: 28px;
+  background: var(--hijau-tua);
+  color: var(--putih);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.form-grid .span-2 { grid-column: span 2; }
+.form-group .req { color: var(--merah); margin-left: 2px; }
+.form-group small { color: var(--abu-text); font-weight: 400; }
+
+.input-btn-wrap {
+  display: flex;
+  gap: 8px;
+}
+.input-btn-wrap input { flex: 1; }
+.btn-gen {
+  padding: 10px 14px;
+  background: var(--mint-pale);
+  border: 1.5px solid var(--abu-border);
+  border-radius: var(--r-md);
+  color: var(--hijau-tua);
+  cursor: pointer;
+  font-size: 14px;
+  transition: background .2s;
+  white-space: nowrap;
+}
+.btn-gen:hover { background: var(--mint); }
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--abu-border);
+}
+
+/* ── BUTTONS ───────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, var(--hijau-tua), var(--hijau-muda));
+  color: var(--putih);
+  border: none;
+  border-radius: var(--r-md);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity .2s, transform .15s;
+}
+.btn-primary:hover { opacity: .9; transform: translateY(-1px); }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--putih);
+  color: var(--teks-light);
+  border: 1.5px solid var(--abu-border);
+  border-radius: var(--r-md);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color .2s;
+}
+.btn-secondary:hover { border-color: var(--hijau-muda); color: var(--hijau-tua); }
+
+.btn-danger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--merah);
+  color: var(--putih);
+  border: none;
+  border-radius: var(--r-md);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity .2s;
+}
+.btn-danger:hover { opacity: .88; }
+
+/* ── MODAL ─────────────────────────────────────────────── */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.4);
+  backdrop-filter: blur(4px);
+}
+.modal-box {
+  position: relative;
+  background: var(--putih);
+  border-radius: var(--r-xl);
+  padding: 32px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  animation: modalIn .2s ease;
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(.92) translateY(10px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.modal-icon {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px;
+  margin: 0 auto 20px;
+}
+.modal-icon.danger { background: #fde8e8; color: var(--merah); }
+.modal-box h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--teks);
+  margin-bottom: 10px;
+}
+.modal-box p { color: var(--abu-text); font-size: 14px; margin-bottom: 24px; }
+.modal-actions { display: flex; gap: 12px; justify-content: center; }
+
+/* ── TOAST ─────────────────────────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+  padding: 12px 20px;
+  border-radius: var(--r-md);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--putih);
+  box-shadow: var(--shadow-lg);
+  animation: toastIn .3s ease;
+  max-width: 320px;
+}
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.toast.success { background: var(--hijau-tua); }
+.toast.error   { background: var(--merah); }
+.toast.info    { background: #3182ce; }
+
+/* ══════════════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .chart-wrap { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  .sidebar-close { display: block; }
+  .sidebar-overlay.open { display: block; }
+
+  .main-content { margin-left: 0; }
+  .btn-hamburger { display: flex; }
+
+  .stat-grid { grid-template-columns: 1fr; }
+  .stat-num { font-size: 28px; }
+
+  .form-grid { grid-template-columns: 1fr; }
+  .form-grid .span-2 { grid-column: span 1; }
+  .form-card { padding: 20px; }
+
+  .table-toolbar { flex-direction: column; align-items: stretch; }
+  .search-box { max-width: 100%; }
+  .toolbar-right { justify-content: space-between; }
+
+  .content-section { padding: 20px 16px; }
+
+  .form-actions { flex-direction: column; }
+  .form-actions button { width: 100%; justify-content: center; }
+
+  .toast { left: 16px; right: 16px; bottom: 16px; }
+}
+
+@media (max-width: 480px) {
+  .login-card { padding: 24px 20px; }
+  .chart-body { flex-direction: column; align-items: flex-start; }
+}
+
+/* ══════════════════════════════════════════════════════════
+   PEMBAYARAN — tambahan styling
+══════════════════════════════════════════════════════════ */
+.btn-pdf {
+  background: #fff5f5;
+  color: #e53e3e;
+  border: 1px solid #fed7d7;
+}
+.btn-pdf:hover {
+  background: #e53e3e;
+  color: #fff;
+  border-color: #e53e3e;
+}
+
+/* Stat card penerimaan responsif */
+@media (max-width: 768px) {
+  .pay-summary-grid { grid-template-columns: 1fr; }
+}
+
+    /* ── PEMBAYARAN STYLES (custom tambahan) ─────────────────────────── */
+    /* ── PEMBAYARAN STYLES ─────────────────────────── */
+    .pay-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .pay-summary-item {
+      background: #fff;
+      border: 1px solid #e0ede7;
+      border-radius: 12px;
+      padding: 16px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+    .pay-summary-item.pay-total {
+      background: linear-gradient(135deg, #1a5c38, #2d9e5f);
+      border-color: transparent;
+    }
+    .pay-summary-item.pay-total .pay-label,
+    .pay-summary-item.pay-total .pay-value { color: #fff; }
+    .pay-label {
+      font-size: 13px;
+      color: #555;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .pay-label i { color: #1a5c38; font-size: 15px; }
+    .pay-summary-item.pay-total .pay-label i { color: #a8e6c2; }
+    .pay-value {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1a5c38;
+      font-family: 'Inter', monospace;
+    }
+    /* Modal pembayaran */
+    .pay-modal-body { padding: 0; }
+    .pay-modal-info {
+      background: var(--mint-pale, #e8f7ef);
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 18px;
+    }
+    .pay-modal-info p { margin: 3px 0; font-size: 13px; color: #555; }
+    .pay-modal-info strong { color: #1a5c38; font-size: 15px; }
+    .pay-total-preview {
+      background: linear-gradient(135deg, #1a5c38, #217a49);
+      color: white;
+      border-radius: 10px;
+      padding: 12px 16px;
+      text-align: center;
+      margin-top: 14px;
+    }
+    .pay-total-preview small { font-size: 11px; opacity: 0.8; }
+    .pay-total-preview .total-num { font-size: 20px; font-weight: 700; letter-spacing: 0.5px; }
+    /* Rupiah input */
+    .input-rupiah-wrap { position: relative; }
+    .input-rupiah-wrap .rupiah-prefix {
+      position: absolute; left: 12px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 13px; color: #888; font-weight: 600; pointer-events: none;
+    }
+    .input-rupiah-wrap input { padding-left: 40px; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════
+     HALAMAN LOGIN
+══════════════════════════════════════════════════════════ -->
+<div id="loginPage" class="login-page">
+  <div class="login-bg-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+  </div>
+  <div class="login-container">
+    <div class="login-logo">
+
+      <div class="logo-icon"><i class="fas fa-graduation-cap"></i></div>
+      <h1>SMP Muhammadiyah 12</h1>
+      <p>SPMB — Penerimaan Murid Baru</p>
+    </div>
+    <div class="login-card">
+      <h2>Masuk Admin</h2>
+      <p class="login-subtitle">Silakan masuk untuk mengakses dashboard SPMB</p>
+      <div id="loginError" class="alert-error hidden"></div>
+      <div class="form-group">
+        <label><i class="fas fa-user"></i> Username</label>
+        <input type="text" id="loginUsername" placeholder="Masukkan username" autocomplete="username"/>
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-lock"></i> Password</label>
+        <div class="input-pw-wrap">
+          <input type="password" id="loginPassword" placeholder="Masukkan password" autocomplete="current-password"/>
+          <button type="button" class="btn-eye" onclick="togglePw()"><i class="fas fa-eye" id="eyeIcon"></i></button>
+        </div>
+      </div>
+      <button class="btn-login" id="btnLogin" onclick="doLogin()">
+        <span id="loginText">Masuk</span>
+        <i class="fas fa-spinner fa-spin hidden" id="loginSpinner"></i>
+      </button>
+    </div>
+    <p class="login-footer">© BagasDev2026</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     APLIKASI UTAMA
+══════════════════════════════════════════════════════════ -->
+<div id="appPage" class="hidden app-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <i class="fas fa-graduation-cap"></i>
+        <div>
+          <span class="sidebar-title">SPMB</span>
+          <span class="sidebar-sub">SMPM 12</span>
+        </div>
+      </div>
+      <button class="sidebar-close" onclick="toggleSidebar()"><i class="fas fa-times"></i></button>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active" onclick="showSection('dashboard', this)">
+        <i class="fas fa-chart-pie"></i> <span>Dashboard</span>
+      </a>
+      <a href="#" class="nav-item" onclick="showSection('dataTable', this)">
+        <i class="fas fa-table"></i> <span>Data Pendaftar</span>
+      </a>
+      <a href="#" class="nav-item" onclick="showSection('tambah', this)">
+        <i class="fas fa-user-plus"></i> <span>Tambah Pendaftar</span>
+      </a>
+      <a href="#" class="nav-item" onclick="showSection('pembayaran', this)">
+        <i class="fas fa-money-bill-wave"></i> <span>Input Pembayaran</span>
+      </a>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="admin-info">
+        <div class="admin-avatar"><i class="fas fa-user-shield"></i></div>
+        <div>
+          <strong>Administrator</strong>
+          <small>SPMB 2026/2027</small>
+        </div>
+      </div>
+      <button class="btn-logout" onclick="doLogout()">
+        <i class="fas fa-sign-out-alt"></i> Keluar
+      </button>
+    </div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="btn-hamburger" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+        <div class="topbar-title" id="topbarTitle">Dashboard</div>
+      </div>
+      <div class="topbar-right">
+        <span class="badge-year">TA 2026/2027</span>
+        <button class="btn-refresh" onclick="refreshData()" title="Refresh Data">
+          <i class="fas fa-sync-alt"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- ─── SECTION: DASHBOARD ─────────────────────────── -->
+    <section id="sectionDashboard" class="content-section active">
+      <div class="section-header">
+        <h2>Ringkasan SPMB</h2>
+        <p>SMP Muhammadiyah 12 — Tahun Ajaran 2026/2027</p>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card stat-total">
+          <div class="stat-icon"><i class="fas fa-users"></i></div>
+          <div class="stat-info">
+            <div class="stat-num" id="statTotal">–</div>
+            <div class="stat-label">Total Pendaftar</div>
+          </div>
+          <div class="stat-deco"></div>
+        </div>
+        <div class="stat-card stat-lunas">
+          <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+          <div class="stat-info">
+            <div class="stat-num" id="statLunas">–</div>
+            <div class="stat-label">Sudah Lunas</div>
+          </div>
+          <div class="stat-deco"></div>
+        </div>
+        <div class="stat-card stat-belum">
+          <div class="stat-icon"><i class="fas fa-clock"></i></div>
+          <div class="stat-info">
+            <div class="stat-num" id="statBelum">–</div>
+            <div class="stat-label">Belum Lunas</div>
+          </div>
+          <div class="stat-deco"></div>
+        </div>
+        <div class="stat-card" style="background:linear-gradient(135deg,#1a5c38,#2d9e5f);color:#fff;">
+          <div class="stat-icon" style="background:rgba(255,255,255,0.15);color:#fff"><i class="fas fa-coins"></i></div>
+          <div class="stat-info">
+            <div class="stat-num" id="statPenerimaan" style="font-size:18px;color:#fff">–</div>
+            <div class="stat-label" style="color:rgba(255,255,255,0.8)">Total Penerimaan</div>
+          </div>
+          <div class="stat-deco"></div>
+        </div>
+      </div>
+
+      <div class="chart-wrap">
+        <div class="chart-card">
+          <h3><i class="fas fa-chart-donut"></i> Status Pembayaran</h3>
+          <div class="chart-body">
+            <canvas id="paymentChart" width="260" height="260"></canvas>
+            <div class="chart-legend" id="chartLegend"></div>
+          </div>
+        </div>
+        <div class="chart-card info-card">
+          <h3><i class="fas fa-info-circle"></i> Informasi SPMB</h3>
+          <div class="info-list">
+            <div class="info-item">
+              <i class="fas fa-school"></i>
+              <div><strong>Sekolah</strong><span>SMP Muhammadiyah 12</span></div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-calendar"></i>
+              <div><strong>Tahun Ajaran</strong><span>2026 / 2027</span></div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div><strong>Status</strong><span class="badge-open">Pendaftaran Dibuka</span></div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-database"></i>
+              <div><strong>Database</strong><span>Google Sheets</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SECTION: DATA TABLE ────────────────────────── -->
+    <section id="sectionDataTable" class="content-section">
+      <div class="section-header">
+        <h2>Data Murid</h2>
+        <p>Kelola seluruh data pendaftar SPMB</p>
+      </div>
+
+      <div class="table-toolbar">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" id="searchInput" placeholder="Cari nama, nomor formulir..." oninput="filterTable()"/>
+        </div>
+        <div class="toolbar-right">
+          <select id="filterStatus" onchange="filterTable()" class="filter-select">
+            <option value="">Semua Status</option>
+            <option value="Lunas">Lunas</option>
+            <option value="Belum Lunas">Belum Lunas</option>
+          </select>
+          <button class="btn-primary" onclick="showSection('tambah', null)">
+            <i class="fas fa-plus"></i> Tambah
+          </button>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table class="data-table" id="mainTable">
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>No. Formulir</th>
+              <th>Tgl. Daftar</th>
+              <th>Nama Calon Murid</th>
+              <th>L/P</th>
+              <th>Asal SD</th>
+              <th>No. WA</th>
+              <th>Status</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <tr><td colspan="9" class="loading-row"><i class="fas fa-spinner fa-spin"></i> Memuat data...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagination-wrap">
+        <div class="page-info" id="pageInfo">Menampilkan 0 data</div>
+        <div class="page-controls" id="pageControls"></div>
+      </div>
+    </section>
+
+    <!-- ─── SECTION: FORM TAMBAH / EDIT ───────────────── -->
+    <section id="sectionTambah" class="content-section">
+      <div class="section-header">
+        <h2 id="formTitle">Tambah Calon Murid</h2>
+        <p>Isi formulir pendaftaran dengan lengkap dan benar</p>
+      </div>
+
+      <div class="form-card">
+        <input type="hidden" id="editRowIndex"/>
+        <input type="hidden" id="editMode" value="add"/>
+
+        <!-- 01: DATA FORMULIR -->
+        <div class="form-section-title"><span>01</span> Identitas Formulir</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Nomor Formulir <span class="req">*</span></label>
+            <div class="input-btn-wrap">
+              <input type="text" id="fNomorFormulir" placeholder="SMPM12-2026-001" required/>
+              <button type="button" class="btn-gen" onclick="generateNomor()" title="Generate otomatis">
+                <i class="fas fa-magic"></i>
+              </button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Tanggal Pendaftaran <span class="req">*</span></label>
+            <input type="date" id="fTanggalDaftar" required/>
+          </div>
+        </div>
+
+        <!-- 02: DATA MURID -->
+        <div class="form-section-title"><span>02</span> Data Calon Murid</div>
+        <div class="form-grid">
+          <div class="form-group span-2">
+            <label>Nama Lengkap Calon Murid <span class="req">*</span></label>
+            <input type="text" id="fNamaMurid" placeholder="Nama lengkap sesuai dokumen" required/>
+          </div>
+          <div class="form-group">
+            <label>Jenis Kelamin <span class="req">*</span></label>
+            <select id="fJenisKelamin" required>
+              <option value="">-- Pilih --</option>
+              <option value="Laki-laki">Laki-laki</option>
+              <option value="Perempuan">Perempuan</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Tempat Lahir <span class="req">*</span></label>
+            <input type="text" id="fTempatLahir" placeholder="Kota tempat lahir" required/>
+          </div>
+          <div class="form-group">
+            <label>Tanggal Lahir <span class="req">*</span></label>
+            <input type="date" id="fTanggalLahir" required/>
+          </div>
+          <div class="form-group">
+            <label>Nama Orang Tua / Wali <span class="req">*</span></label>
+            <input type="text" id="fNamaOrtu" placeholder="Nama ayah / ibu / wali" required/>
+          </div>
+        </div>
+
+        <!-- 03: ASAL SEKOLAH -->
+        <div class="form-section-title"><span>03</span> Asal Sekolah</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Asal SD / MI <span class="req">*</span></label>
+            <input type="text" id="fAsalSD" placeholder="Nama SD/MI asal" required/>
+          </div>
+          <div class="form-group">
+            <label>Tahun Lulus <span class="req">*</span></label>
+            <select id="fTahunLulus" required>
+              <option value="">-- Pilih Tahun --</option>
+              <option value="2026">2026</option>
+              <option value="2025">2025</option>
+              <option value="2024">2024</option>
+              <option value="2023">2023</option>
+            </select>
+          </div>
+          <div class="form-group span-2">
+            <label>Alamat Rumah <span class="req">*</span></label>
+            <textarea id="fAlamat" rows="3" placeholder="Alamat lengkap tempat tinggal" required></textarea>
+          </div>
+        </div>
+
+        <!-- 04: KONTAK & PEMBAYARAN -->
+        <div class="form-section-title"><span>04</span> Kontak & Status Pembayaran</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>No. Telepon / WhatsApp <span class="req">*</span></label>
+            <input type="tel" id="fNoTlp" placeholder="08xxxxxxxxxx" required/>
+          </div>
+          <div class="form-group">
+            <label>Status Pembayaran <span class="req">*</span></label>
+            <select id="fStatusBayar" required>
+              <option value="">-- Pilih Status --</option>
+              <option value="Lunas">Lunas</option>
+              <option value="Belum Lunas">Belum Lunas</option>
+            </select>
+          </div>
+          <div class="form-group span-2">
+            <label>Keterangan <small>(opsional)</small></label>
+            <textarea id="fKeterangan" rows="2" placeholder="Catatan tambahan jika ada..."></textarea>
+          </div>
+        </div>
+
+        <!-- 05: RINCIAN PEMBAYARAN -->
+        <div class="form-section-title"><span>05</span> Rincian Pembayaran <small style="font-weight:400;color:#888">(opsional — dapat diisi di menu Input Pembayaran)</small></div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Uang Formulir</label>
+            <div class="input-rupiah-wrap">
+              <span class="rupiah-prefix">Rp</span>
+              <input type="number" id="fUangFormulir" placeholder="0" min="0" step="1000"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Uang SPP</label>
+            <div class="input-rupiah-wrap">
+              <span class="rupiah-prefix">Rp</span>
+              <input type="number" id="fUangSPP" placeholder="0" min="0" step="1000"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Uang Kegiatan</label>
+            <div class="input-rupiah-wrap">
+              <span class="rupiah-prefix">Rp</span>
+              <input type="number" id="fUangKegiatan" placeholder="0" min="0" step="1000"/>
+            </div>
+          </div>
+        </div>
+
+        <!-- TOMBOL AKSI -->
+        <div class="form-actions">
+          <button type="button" class="btn-secondary" onclick="showSection('dataTable', null)">
+            <i class="fas fa-arrow-left"></i> Batal
+          </button>
+          <button type="button" class="btn-primary" id="btnSubmit" onclick="submitForm()">
+            <i class="fas fa-save"></i> <span id="submitText">Simpan Data</span>
+            <i class="fas fa-spinner fa-spin hidden" id="submitSpinner"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SECTION: INPUT PEMBAYARAN (BARU) ──────────── -->
+    <section id="sectionPembayaran" class="content-section">
+      <div class="section-header">
+        <h2>Input Pembayaran</h2>
+        <p>Kelola uang formulir, SPP, dan kegiatan calon Murid</p>
+      </div>
+
+      <!-- RINGKASAN PEMBAYARAN -->
+      <div id="pembayaranSummary" class="pay-summary-grid">
+        <div class="pay-summary-item">
+          <span class="pay-label"><i class="fas fa-spinner fa-spin"></i> Memuat...</span>
+          <span class="pay-value">–</span>
+        </div>
+      </div>
+
+      <!-- TABEL PEMBAYARAN -->
+      <div class="table-toolbar">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" id="searchPembayaran" placeholder="Cari nama atau nomor formulir..." oninput="filterPembayaran()"/>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>No. Formulir</th>
+              <th>Nama Murid</th>
+              <th style="text-align:right">Uang Formulir</th>
+              <th style="text-align:right">Uang SPP</th>
+              <th style="text-align:right">Uang Kegiatan</th>
+              <th style="text-align:right">Total</th>
+              <th>Status</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="pembayaranTableBody">
+            <tr><td colspan="9" class="loading-row"><i class="fas fa-spinner fa-spin"></i> Memuat data...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagination-wrap">
+        <div class="page-info" id="pembayaranPageInfo">Menampilkan 0 data</div>
+        <div class="page-controls" id="pembayaranPageControls"></div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     MODAL HAPUS
+══════════════════════════════════════════════════════════ -->
+<div id="deleteModal" class="modal hidden">
+  <div class="modal-backdrop" onclick="closeModal('deleteModal')"></div>
+  <div class="modal-box">
+    <div class="modal-icon danger"><i class="fas fa-trash-alt"></i></div>
+    <h3>Hapus Data?</h3>
+    <p id="deleteModalText">yakin ingin menghapus,Nyesel gak?</p>
+    <div class="modal-actions">
+      <button class="btn-secondary" onclick="closeModal('deleteModal')">Batal</button>
+      <button class="btn-danger" id="btnConfirmDelete">Ya, Hapus</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     MODAL EDIT PEMBAYARAN (BARU)
+══════════════════════════════════════════════════════════ -->
+<div id="pembayaranModal" class="modal hidden">
+  <div class="modal-backdrop" onclick="closeModal('pembayaranModal')"></div>
+  <div class="modal-box" style="max-width:460px">
+    <div class="modal-icon" style="background:#e8f7ef;color:#1a5c38"><i class="fas fa-money-bill-wave"></i></div>
+    <h3>Input Pembayaran</h3>
+
+    <div class="pay-modal-info">
+      <strong id="editPayNama">–</strong>
+      <p><i class="fas fa-file-alt" style="color:#1a5c38;margin-right:4px"></i> No. Formulir: <b id="editPayNomor">–</b></p>
+    </div>
+
+    <div class="form-grid" style="grid-template-columns:1fr;gap:12px">
+      <div class="form-group" style="margin:0">
+        <label><i class="fas fa-file-invoice" style="color:#1a5c38;margin-right:5px"></i> Uang Formulir</label>
+        <div class="input-rupiah-wrap">
+          <span class="rupiah-prefix">Rp</span>
+          <input type="number" id="editPayFormulir" placeholder="0" min="0" step="1000" oninput="hitungTotalModal()"/>
+        </div>
+      </div>
+      <div class="form-group" style="margin:0">
+        <label><i class="fas fa-graduation-cap" style="color:#1a5c38;margin-right:5px"></i> Uang SPP</label>
+        <div class="input-rupiah-wrap">
+          <span class="rupiah-prefix">Rp</span>
+          <input type="number" id="editPaySPP" placeholder="0" min="0" step="1000" oninput="hitungTotalModal()"/>
+        </div>
+      </div>
+      <div class="form-group" style="margin:0">
+        <label><i class="fas fa-calendar-check" style="color:#1a5c38;margin-right:5px"></i> Uang Kegiatan</label>
+        <div class="input-rupiah-wrap">
+          <span class="rupiah-prefix">Rp</span>
+          <input type="number" id="editPayKegiatan" placeholder="0" min="0" step="1000" oninput="hitungTotalModal()"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="pay-total-preview">
+      <small>Total Pembayaran</small>
+      <div class="total-num" id="editPayTotal">Rp 0</div>
+    </div>
+
+    <div class="modal-actions" style="margin-top:18px">
+      <button class="btn-secondary" onclick="closeModal('pembayaranModal')">Batal</button>
+      <button class="btn-primary" id="btnSavePembayaran" onclick="savePembayaran()">
+        <i class="fas fa-save"></i> Simpan Pembayaran
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST NOTIFIKASI -->
+<div id="toast" class="toast hidden"></div>
+
+<script>
+/* ═══════════════════════════════════════════════════════
+   PPDB SMP MUHAMMADIYAH 12 — JavaScript Utama v3
+   Fixes: Bug index tabel, fitur PDF, fitur Pembayaran
+══════════════════════════════════════════════════════════ */
+
+// ─── KONFIGURASI ───────────────────────────────────────
+const API_URL = 'https://script.google.com/macros/s/AKfycbws15d0imVW69UOdZ5MBwxdVMVy6x2vpbvzK9o3aFj-ZU00pBR9u2w-dy_YMsCSGbTp/exec';
+
+// ─── STATE APLIKASI ────────────────────────────────────
+let state = {
+  token: null,
+  allData: [],
+  filteredData: [],
+  pembayaranData: [],
+  filteredPembayaran: [],
+  currentPage: 1,
+  currentPembayaranPage: 1,
+  perPage: 10,
+  chart: null,
+  deleteTarget: null,
+  editPembayaranRow: null,
+};
+
+// ══════════════════════════════════════════════════════════
+// INISIALISASI
+// ══════════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  const savedToken = sessionStorage.getItem('ppdb_token');
+  if (savedToken) {
+    state.token = savedToken;
+    showApp();
+  }
+  setTodayDate();
+  document.getElementById('loginPassword').addEventListener('keypress', e => {
+    if (e.key === 'Enter') doLogin();
+  });
+});
+
+// ══════════════════════════════════════════════════════════
+// AUTENTIKASI
+// ══════════════════════════════════════════════════════════
+async function doLogin() {
+  const username = document.getElementById('loginUsername').value.trim();
+  const password = document.getElementById('loginPassword').value;
+  const errorDiv = document.getElementById('loginError');
+  const btnLogin = document.getElementById('btnLogin');
+
+  if (!username || !password) {
+    showLoginError('Username dan password wajib diisi.');
+    return;
+  }
+
+  btnLogin.disabled = true;
+  document.getElementById('loginText').textContent = 'Memverifikasi...';
+  document.getElementById('loginSpinner').classList.remove('hidden');
+  errorDiv.classList.add('hidden');
+
+  try {
+    const res = await apiCall('login', { username, password });
+    if (res.success) {
+      state.token = res.token;
+      sessionStorage.setItem('ppdb_token', res.token);
+      showApp();
+    } else {
+      showLoginError(res.message || 'Login gagal.');
+    }
+  } catch (err) {
+    showLoginError('Gagal terhubung ke server. Periksa URL API Anda.');
+  } finally {
+    btnLogin.disabled = false;
+    document.getElementById('loginText').textContent = 'Masuk';
+    document.getElementById('loginSpinner').classList.add('hidden');
+  }
+}
+
+function showLoginError(msg) {
+  const div = document.getElementById('loginError');
+  div.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${msg}`;
+  div.classList.remove('hidden');
+}
+
+function doLogout() {
+  if (!confirm('Apakah Anda yakin ingin keluar?')) return;
+  state.token = null;
+  sessionStorage.removeItem('ppdb_token');
+  document.getElementById('appPage').classList.add('hidden');
+  document.getElementById('loginPage').classList.remove('hidden');
+  document.getElementById('loginUsername').value = '';
+  document.getElementById('loginPassword').value = '';
+}
+
+function togglePw() {
+  const inp = document.getElementById('loginPassword');
+  const icon = document.getElementById('eyeIcon');
+  if (inp.type === 'password') {
+    inp.type = 'text';
+    icon.className = 'fas fa-eye-slash';
+  } else {
+    inp.type = 'password';
+    icon.className = 'fas fa-eye';
+  }
+}
+
+// ══════════════════════════════════════════════════════════
+// TAMPILAN & NAVIGASI
+// ══════════════════════════════════════════════════════════
+function showApp() {
+  document.getElementById('loginPage').classList.add('hidden');
+  document.getElementById('appPage').classList.remove('hidden');
+  loadDashboard();
+}
+
+function showSection(section, navEl) {
+  document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+
+  let sectionId, title;
+  if (section === 'dashboard') {
+    sectionId = 'sectionDashboard';
+    title = 'Dashboard';
+  } else if (section === 'dataTable') {
+    sectionId = 'sectionDataTable';
+    title = 'Data Pendaftar';
+    loadData();
+  } else if (section === 'tambah') {
+    sectionId = 'sectionTambah';
+    title = 'Tambah Pendaftar';
+    resetForm();
+  } else if (section === 'pembayaran') {
+    sectionId = 'sectionPembayaran';
+    title = 'Input Pembayaran';
+    loadPembayaran();
+  }
+
+  document.getElementById(sectionId).classList.add('active');
+  document.getElementById('topbarTitle').textContent = title;
+  if (navEl) navEl.classList.add('active');
+  closeSidebarMobile();
+}
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebarOverlay').classList.toggle('open');
+}
+
+function closeSidebarMobile() {
+  if (window.innerWidth <= 768) {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('sidebarOverlay').classList.remove('open');
+  }
+}
+
+function refreshData() {
+  const btn = document.querySelector('.btn-refresh i');
+  btn.style.animation = 'spin 0.5s linear';
+  setTimeout(() => { btn.style.animation = ''; }, 500);
+  const activeSection = document.querySelector('.content-section.active');
+  if (activeSection.id === 'sectionDashboard') loadDashboard();
+  else if (activeSection.id === 'sectionDataTable') loadData();
+  else if (activeSection.id === 'sectionPembayaran') loadPembayaran();
+}
+
+// ══════════════════════════════════════════════════════════
+// DASHBOARD & STATISTIK
+// ══════════════════════════════════════════════════════════
+async function loadDashboard() {
+  try {
+    const res = await apiCall('getStats', { token: state.token });
+    if (res.success) {
+      const s = res.stats;
+      document.getElementById('statTotal').textContent = s.total;
+      document.getElementById('statLunas').textContent = s.lunas;
+      document.getElementById('statBelum').textContent = s.belumLunas;
+      // Update stat penerimaan jika ada elemennya
+      const elPenerimaan = document.getElementById('statPenerimaan');
+      if (elPenerimaan && s.totalPenerimaan !== undefined) {
+        elPenerimaan.textContent = formatRupiah(s.totalPenerimaan);
+      }
+      renderChart(s.lunas, s.belumLunas);
+    }
+  } catch (err) {
+    console.error('Error loading dashboard:', err);
+  }
+}
+
+function renderChart(lunas, belum) {
+  const ctx = document.getElementById('paymentChart');
+  if (!ctx) return;
+  if (state.chart) state.chart.destroy();
+
+  const total = lunas + belum;
+  const pctLunas = total > 0 ? Math.round((lunas / total) * 100) : 0;
+  const pctBelum = 100 - pctLunas;
+
+  if (total === 0) {
+    ctx.getContext('2d').clearRect(0, 0, ctx.width, ctx.height);
+    document.getElementById('chartLegend').innerHTML = '<p style="color:#aaa;font-size:13px">Belum ada data</p>';
+    return;
+  }
+
+  state.chart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Lunas', 'Belum Lunas'],
+      datasets: [{
+        data: [lunas, belum],
+        backgroundColor: ['#1a5c38', '#e53e3e'],
+        borderWidth: 0,
+        hoverOffset: 6,
+      }]
+    },
+    options: {
+      responsive: false,
+      cutout: '68%',
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw} orang` }
+        }
+      }
+    }
+  });
+
+  document.getElementById('chartLegend').innerHTML = `
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#1a5c38"></div>
+      <div><strong>${lunas}</strong> Lunas <span style="color:#888">(${pctLunas}%)</span></div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#e53e3e"></div>
+      <div><strong>${belum}</strong> Belum Lunas <span style="color:#888">(${pctBelum}%)</span></div>
+    </div>
+    <div class="legend-item" style="margin-top:8px;padding-top:8px;border-top:1px solid #eee">
+      <div class="legend-dot" style="background:#888"></div>
+      <div><strong>${total}</strong> Total Pendaftar</div>
+    </div>
+  `;
+}
+
+// ══════════════════════════════════════════════════════════
+// DATA TABLE — BUG FIX: gunakan _rowIndex & index global
+// ══════════════════════════════════════════════════════════
+async function loadData() {
+  const tbody = document.getElementById('tableBody');
+  tbody.innerHTML = `<tr><td colspan="9" class="loading-row"><i class="fas fa-spinner fa-spin"></i> Memuat data...</td></tr>`;
+
+  try {
+    const res = await apiCall('getData', { token: state.token });
+    if (res.success) {
+      // BUG FIX: pastikan setiap field bertipe string agar method seperti
+      // .toLowerCase() / .replace() di filterTable & cleanPhone tidak gagal
+      // ketika Google Sheets mengembalikan angka (mis. No. WA / No. Formulir).
+      state.allData = (res.data || []).map(normalizeRow);
+      filterTable();
+    } else {
+      tbody.innerHTML = `<tr><td colspan="9" class="empty-row"><i class="fas fa-exclamation-triangle"></i> ${res.message}</td></tr>`;
+    }
+  } catch (err) {
+    tbody.innerHTML = `<tr><td colspan="9" class="empty-row"><i class="fas fa-wifi-slash"></i> Gagal memuat data: ${err.message}</td></tr>`;
+    console.error(err);
+  }
+}
+
+// BUG FIX: helper untuk menyamakan tipe data dari backend (Google Sheets
+// kadang mengirim Number untuk kolom yang seharusnya teks).
+function normalizeRow(row) {
+  const out = { ...row };
+  ['nomorFormulir', 'namaMurid', 'asalSD', 'namaOrtu', 'noTlp', 'jenisKelamin',
+   'statusBayar', 'tanggalDaftar', 'tanggalLahir', 'tempatLahir', 'alamat',
+   'keterangan', 'tahunLulus'].forEach(key => {
+    if (out[key] !== undefined && out[key] !== null) out[key] = String(out[key]);
+  });
+  return out;
+}
+
+function filterTable() {
+  const q = (document.getElementById('searchInput')?.value || '').toLowerCase();
+  const status = document.getElementById('filterStatus')?.value || '';
+
+  state.filteredData = state.allData.filter(row => {
+    const matchSearch = !q ||
+      String(row.namaMurid || '').toLowerCase().includes(q) ||
+      String(row.nomorFormulir || '').toLowerCase().includes(q) ||
+      String(row.asalSD || '').toLowerCase().includes(q) ||
+      String(row.namaOrtu || '').toLowerCase().includes(q);
+    const matchStatus = !status || row.statusBayar === status;
+    return matchSearch && matchStatus;
+  });
+
+  state.currentPage = 1;
+  renderTable();
+}
+
+function renderTable() {
+  const tbody = document.getElementById('tableBody');
+  const start = (state.currentPage - 1) * state.perPage;
+  const end = start + state.perPage;
+  const pageData = state.filteredData.slice(start, end);
+
+  if (pageData.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="9" class="empty-row"><i class="fas fa-inbox" style="font-size:28px;display:block;margin-bottom:8px"></i> Tidak ada data pendaftar</td></tr>`;
+    renderPagination();
+    return;
+  }
+
+  try {
+    tbody.innerHTML = pageData.map((row, idx) => {
+      const no = start + idx + 1;
+      const tgl = formatDate(row.tanggalDaftar);
+      const statusBadge = row.statusBayar === 'Lunas'
+        ? `<span class="badge-status badge-lunas"><i class="fas fa-check-circle"></i> Lunas</span>`
+        : `<span class="badge-status badge-belum"><i class="fas fa-clock"></i> Belum Lunas</span>`;
+
+      // BUG FIX: simpan _rowIndex di data-attribute, bukan pakai indexOf
+      const rowIndex = row._rowIndex;
+      const allDataIdx = state.allData.findIndex(r => r._rowIndex === rowIndex);
+
+      return `
+        <tr>
+          <td style="color:#888;font-size:12px">${no}</td>
+          <td><strong style="font-size:12px;color:#1a5c38">${row.nomorFormulir}</strong></td>
+          <td style="font-size:12px;color:#666">${tgl}</td>
+          <td>
+            <div style="font-weight:600">${row.namaMurid}</div>
+            <div style="font-size:11px;color:#888">${row.namaOrtu}</div>
+          </td>
+          <td style="font-size:13px">${row.jenisKelamin === 'Laki-laki' ? '♂ L' : '♀ P'}</td>
+          <td style="font-size:12px">${row.asalSD}</td>
+          <td style="font-size:12px"><a href="https://wa.me/${cleanPhone(row.noTlp)}" target="_blank" style="color:#1a5c38;text-decoration:none"><i class="fab fa-whatsapp"></i> ${row.noTlp}</a></td>
+          <td>${statusBadge}</td>
+          <td>
+            <div class="action-btns">
+              <button class="btn-icon btn-edit" onclick="editRow(${allDataIdx})" title="Edit">
+                <i class="fas fa-pen"></i>
+              </button>
+              <button class="btn-icon btn-delete" onclick="confirmDelete(${allDataIdx})" title="Hapus">
+                <i class="fas fa-trash"></i>
+              </button>
+              <button class="btn-icon btn-pdf" onclick="cetakPDF(${allDataIdx})" title="Unduh Bukti Pendaftaran (PDF)">
+                <i class="fas fa-file-pdf"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  } catch (err) {
+    console.error('Gagal merender tabel pendaftar:', err);
+    tbody.innerHTML = `<tr><td colspan="9" class="empty-row"><i class="fas fa-exclamation-triangle"></i> Terjadi kesalahan saat menampilkan data: ${err.message}</td></tr>`;
+  }
+
+  renderPagination();
+}
+
+function renderPagination() {
+  const total = state.filteredData.length;
+  const pages = Math.ceil(total / state.perPage);
+  const cp = state.currentPage;
+
+  document.getElementById('pageInfo').textContent =
+    total === 0 ? 'Tidak ada data' :
+    `Menampilkan ${Math.min((cp-1)*state.perPage+1, total)}–${Math.min(cp*state.perPage, total)} dari ${total} data`;
+
+  const ctrl = document.getElementById('pageControls');
+  if (pages <= 1) { ctrl.innerHTML = ''; return; }
+
+  let btns = `<button class="page-btn" onclick="goPage(${cp-1})" ${cp===1?'disabled':''}>‹</button>`;
+  for (let i = 1; i <= pages; i++) {
+    if (i === 1 || i === pages || (i >= cp-1 && i <= cp+1)) {
+      btns += `<button class="page-btn ${i===cp?'active':''}" onclick="goPage(${i})">${i}</button>`;
+    } else if (i === cp-2 || i === cp+2) {
+      btns += `<span style="padding:0 4px;color:#888">…</span>`;
+    }
+  }
+  btns += `<button class="page-btn" onclick="goPage(${cp+1})" ${cp===pages?'disabled':''}>›</button>`;
+  ctrl.innerHTML = btns;
+}
+
+function goPage(p) {
+  const pages = Math.ceil(state.filteredData.length / state.perPage);
+  if (p < 1 || p > pages) return;
+  state.currentPage = p;
+  renderTable();
+}
+
+// ══════════════════════════════════════════════════════════
+// FORM CRUD
+// ══════════════════════════════════════════════════════════
+function resetForm() {
+  document.getElementById('formTitle').textContent = 'Tambah Calon Peserta Didik';
+  document.getElementById('submitText').textContent = 'Simpan Data';
+  document.getElementById('editMode').value = 'add';
+  document.getElementById('editRowIndex').value = '';
+
+  const fields = ['fNomorFormulir','fTanggalDaftar','fNamaMurid','fJenisKelamin',
+    'fTempatLahir','fTanggalLahir','fNamaOrtu','fAsalSD',
+    'fTahunLulus','fAlamat','fNoTlp','fStatusBayar','fKeterangan',
+    'fUangFormulir','fUangSPP','fUangKegiatan'];
+  fields.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  setTodayDate();
+}
+
+function setTodayDate() {
+  const el = document.getElementById('fTanggalDaftar');
+  if (el) el.value = new Date().toISOString().split('T')[0];
+}
+
+function editRow(dataIndex) {
+  const row = state.allData[dataIndex];
+  if (!row) return;
+
+  document.getElementById('formTitle').textContent = 'Edit Data Pendaftar';
+  document.getElementById('submitText').textContent = 'Perbarui Data';
+  document.getElementById('editMode').value = 'edit';
+  document.getElementById('editRowIndex').value = row._rowIndex;
+
+  document.getElementById('fNomorFormulir').value = row.nomorFormulir || '';
+  document.getElementById('fTanggalDaftar').value = row.tanggalDaftar || '';
+  document.getElementById('fNamaMurid').value = row.namaMurid || '';
+  document.getElementById('fJenisKelamin').value = row.jenisKelamin || '';
+  document.getElementById('fTempatLahir').value = row.tempatLahir || '';
+  document.getElementById('fTanggalLahir').value = row.tanggalLahir || '';
+  document.getElementById('fNamaOrtu').value = row.namaOrtu || '';
+  document.getElementById('fAsalSD').value = row.asalSD || '';
+  document.getElementById('fTahunLulus').value = row.tahunLulus || '';
+  document.getElementById('fAlamat').value = row.alamat || '';
+  document.getElementById('fNoTlp').value = row.noTlp || '';
+  document.getElementById('fStatusBayar').value = row.statusBayar || '';
+  document.getElementById('fKeterangan').value = row.keterangan || '';
+  document.getElementById('fUangFormulir').value = row.uangFormulir || '';
+  document.getElementById('fUangSPP').value = row.uangSPP || '';
+  document.getElementById('fUangKegiatan').value = row.uangKegiatan || '';
+
+  showSection('tambah', null);
+  document.getElementById('topbarTitle').textContent = 'Edit Data';
+}
+
+async function submitForm() {
+  const required = {
+    fNomorFormulir: 'Nomor Formulir',
+    fTanggalDaftar: 'Tanggal Pendaftaran',
+    fNamaMurid: 'Nama Calon Murid',
+    fJenisKelamin: 'Jenis Kelamin',
+    fTempatLahir: 'Tempat Lahir',
+    fTanggalLahir: 'Tanggal Lahir',
+    fNamaOrtu: 'Nama Orang Tua',
+    fAsalSD: 'Asal SD',
+    fTahunLulus: 'Tahun Lulus',
+    fAlamat: 'Alamat',
+    fNoTlp: 'No. Telepon',
+    fStatusBayar: 'Status Pembayaran',
+  };
+
+  for (const [id, label] of Object.entries(required)) {
+    const val = document.getElementById(id)?.value?.trim();
+    if (!val) {
+      showToast(`Field "${label}" wajib diisi!`, 'error');
+      document.getElementById(id)?.focus();
+      return;
+    }
+  }
+
+  const data = {
+    token: state.token,
+    nomorFormulir: document.getElementById('fNomorFormulir').value.trim(),
+    tanggalDaftar:  document.getElementById('fTanggalDaftar').value,
+    namaMurid:      document.getElementById('fNamaMurid').value.trim(),
+    jenisKelamin:   document.getElementById('fJenisKelamin').value,
+    tempatLahir:    document.getElementById('fTempatLahir').value.trim(),
+    tanggalLahir:   document.getElementById('fTanggalLahir').value,
+    namaOrtu:       document.getElementById('fNamaOrtu').value.trim(),
+    asalSD:         document.getElementById('fAsalSD').value.trim(),
+    tahunLulus:     document.getElementById('fTahunLulus').value,
+    alamat:         document.getElementById('fAlamat').value.trim(),
+    noTlp:          document.getElementById('fNoTlp').value.trim(),
+    statusBayar:    document.getElementById('fStatusBayar').value,
+    keterangan:     document.getElementById('fKeterangan').value.trim(),
+    uangFormulir:   document.getElementById('fUangFormulir').value || 0,
+    uangSPP:        document.getElementById('fUangSPP').value || 0,
+    uangKegiatan:   document.getElementById('fUangKegiatan').value || 0,
+  };
+
+  const editMode = document.getElementById('editMode').value;
+  const rowIndex = document.getElementById('editRowIndex').value;
+
+  const btn = document.getElementById('btnSubmit');
+  btn.disabled = true;
+  document.getElementById('submitSpinner').classList.remove('hidden');
+
+  try {
+    let res;
+    if (editMode === 'edit') {
+      data._rowIndex = rowIndex;
+      res = await apiCall('updateData', data);
+    } else {
+      res = await apiCall('addData', data);
+    }
+
+    if (res.success) {
+      showToast(editMode === 'edit' ? 'Data berhasil diperbarui!' : 'Data berhasil disimpan!', 'success');
+      const navItems = document.querySelectorAll('.nav-item');
+      showSection('dataTable', navItems[1]);
+    } else {
+      showToast(res.message || 'Gagal menyimpan data.', 'error');
+    }
+  } catch (err) {
+    showToast('Gagal terhubung ke server.', 'error');
+  } finally {
+    btn.disabled = false;
+    document.getElementById('submitSpinner').classList.add('hidden');
+  }
+}
+
+// ── HAPUS ──────────────────────────────────────────────────
+function confirmDelete(dataIndex) {
+  const row = state.allData[dataIndex];
+  if (!row) return;
+  state.deleteTarget = row;
+  document.getElementById('deleteModalText').textContent =
+    `Hapus data "${row.namaMurid}" (${row.nomorFormulir})?`;
+  document.getElementById('btnConfirmDelete').onclick = () => doDelete();
+  document.getElementById('deleteModal').classList.remove('hidden');
+}
+
+async function doDelete() {
+  const row = state.deleteTarget;
+  if (!row) return;
+  closeModal('deleteModal');
+
+  try {
+    const res = await apiCall('deleteData', { token: state.token, _rowIndex: row._rowIndex });
+    if (res.success) {
+      showToast('Data berhasil dihapus.', 'success');
+      loadData();
+      loadDashboard();
+    } else {
+      showToast(res.message || 'Gagal menghapus.', 'error');
+    }
+  } catch (err) {
+    showToast('Gagal terhubung ke server.', 'error');
+  }
+}
+
+// ── GENERATE NOMOR FORMULIR ────────────────────────────────
+async function generateNomor() {
+  try {
+    const res = await apiCall('generateNomor', { token: state.token });
+    if (res.success) {
+      document.getElementById('fNomorFormulir').value = res.nomor;
+    }
+  } catch (err) {
+    const year = new Date().getFullYear();
+    const num = String(state.allData.length + 1).padStart(3, '0');
+    document.getElementById('fNomorFormulir').value = `SMPM12-${year}-${num}`;
+  }
+}
+
+// ══════════════════════════════════════════════════════════
+// PEMBAYARAN — Menu baru input uang formulir, SPP, kegiatan
+// ══════════════════════════════════════════════════════════
+async function loadPembayaran() {
+  const tbody = document.getElementById('pembayaranTableBody');
+  if (!tbody) return;
+  tbody.innerHTML = `<tr><td colspan="9" class="loading-row"><i class="fas fa-spinner fa-spin"></i> Memuat data...</td></tr>`;
+
+  try {
+    const res = await apiCall('getPembayaran', { token: state.token });
+    if (res.success) {
+      state.pembayaranData = res.data;
+      filterPembayaran();
+    } else {
+      tbody.innerHTML = `<tr><td colspan="9" class="empty-row">${res.message}</td></tr>`;
+    }
+  } catch (err) {
+    tbody.innerHTML = `<tr><td colspan="9" class="empty-row">Gagal memuat data pembayaran.</td></tr>`;
+  }
+}
+
+function filterPembayaran() {
+  const q = (document.getElementById('searchPembayaran')?.value || '').toLowerCase();
+  state.filteredPembayaran = state.pembayaranData.filter(row =>
+    !q ||
+    String(row.namaMurid || '').toLowerCase().includes(q) ||
+    String(row.nomorFormulir || '').toLowerCase().includes(q)
+  );
+  state.currentPembayaranPage = 1;
+  renderPembayaranTable();
+  updateSummaryPembayaran();
+}
+
+function updateSummaryPembayaran() {
+  const data = state.filteredPembayaran;
+  const totalFormulir  = data.reduce((s, r) => s + (r.uangFormulir  || 0), 0);
+  const totalSPP       = data.reduce((s, r) => s + (r.uangSPP       || 0), 0);
+  const totalKegiatan  = data.reduce((s, r) => s + (r.uangKegiatan  || 0), 0);
+  const totalAll       = totalFormulir + totalSPP + totalKegiatan;
+
+  const el = document.getElementById('pembayaranSummary');
+  if (el) {
+    el.innerHTML = `
+      <div class="pay-summary-item">
+        <span class="pay-label"><i class="fas fa-file-invoice"></i> Total Uang Formulir</span>
+        <span class="pay-value">${formatRupiah(totalFormulir)}</span>
+      </div>
+      <div class="pay-summary-item">
+        <span class="pay-label"><i class="fas fa-graduation-cap"></i> Total Uang SPP</span>
+        <span class="pay-value">${formatRupiah(totalSPP)}</span>
+      </div>
+      <div class="pay-summary-item">
+        <span class="pay-label"><i class="fas fa-calendar-check"></i> Total Uang Kegiatan</span>
+        <span class="pay-value">${formatRupiah(totalKegiatan)}</span>
+      </div>
+      <div class="pay-summary-item pay-total">
+        <span class="pay-label"><i class="fas fa-coins"></i> Total Penerimaan</span>
+        <span class="pay-value">${formatRupiah(totalAll)}</span>
+      </div>
+    `;
+  }
+}
+
+function renderPembayaranTable() {
+  const tbody = document.getElementById('pembayaranTableBody');
+  if (!tbody) return;
+
+  const start = (state.currentPembayaranPage - 1) * state.perPage;
+  const end = start + state.perPage;
+  const pageData = state.filteredPembayaran.slice(start, end);
+
+  if (pageData.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="9" class="empty-row"><i class="fas fa-inbox" style="font-size:28px;display:block;margin-bottom:8px"></i> Belum ada data pembayaran</td></tr>`;
+    renderPembayaranPagination();
+    return;
+  }
+
+  tbody.innerHTML = pageData.map((row, idx) => {
+    const no = start + idx + 1;
+    const statusBadge = row.statusBayar === 'Lunas'
+      ? `<span class="badge-status badge-lunas"><i class="fas fa-check-circle"></i> Lunas</span>`
+      : `<span class="badge-status badge-belum"><i class="fas fa-clock"></i> Belum Lunas</span>`;
+
+    return `
+      <tr>
+        <td style="color:#888;font-size:12px">${no}</td>
+        <td><strong style="font-size:12px;color:#1a5c38">${row.nomorFormulir}</strong></td>
+        <td style="font-weight:600">${row.namaMurid}</td>
+        <td style="text-align:right;font-family:monospace">${formatRupiah(row.uangFormulir)}</td>
+        <td style="text-align:right;font-family:monospace">${formatRupiah(row.uangSPP)}</td>
+        <td style="text-align:right;font-family:monospace">${formatRupiah(row.uangKegiatan)}</td>
+        <td style="text-align:right;font-family:monospace;font-weight:700;color:#1a5c38">${formatRupiah(row.totalBayar)}</td>
+        <td>${statusBadge}</td>
+        <td>
+          <div class="action-btns">
+            <button class="btn-icon btn-edit" onclick="openEditPembayaran('${row._rowIndex}')" title="Edit Pembayaran">
+              <i class="fas fa-pen"></i>
+            </button>
+            <button class="btn-icon btn-pdf" onclick="cetakPDFByRowIndex(${row._rowIndex})" title="Unduh Bukti Pendaftaran (PDF)">
+              <i class="fas fa-file-pdf"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+    `;
+  }).join('');
+
+  renderPembayaranPagination();
+}
+
+function renderPembayaranPagination() {
+  const total = state.filteredPembayaran.length;
+  const pages = Math.ceil(total / state.perPage);
+  const cp = state.currentPembayaranPage;
+
+  const info = document.getElementById('pembayaranPageInfo');
+  if (info) info.textContent = total === 0 ? 'Tidak ada data' :
+    `Menampilkan ${Math.min((cp-1)*state.perPage+1, total)}–${Math.min(cp*state.perPage, total)} dari ${total} data`;
+
+  const ctrl = document.getElementById('pembayaranPageControls');
+  if (!ctrl) return;
+  if (pages <= 1) { ctrl.innerHTML = ''; return; }
+
+  let btns = `<button class="page-btn" onclick="goPembayaranPage(${cp-1})" ${cp===1?'disabled':''}>‹</button>`;
+  for (let i = 1; i <= pages; i++) {
+    if (i === 1 || i === pages || (i >= cp-1 && i <= cp+1)) {
+      btns += `<button class="page-btn ${i===cp?'active':''}" onclick="goPembayaranPage(${i})">${i}</button>`;
+    } else if (i === cp-2 || i === cp+2) {
+      btns += `<span style="padding:0 4px;color:#888">…</span>`;
+    }
+  }
+  btns += `<button class="page-btn" onclick="goPembayaranPage(${cp+1})" ${cp===pages?'disabled':''}>›</button>`;
+  ctrl.innerHTML = btns;
+}
+
+function goPembayaranPage(p) {
+  const pages = Math.ceil(state.filteredPembayaran.length / state.perPage);
+  if (p < 1 || p > pages) return;
+  state.currentPembayaranPage = p;
+  renderPembayaranTable();
+}
+
+function openEditPembayaran(rowIndex) {
+  const row = state.pembayaranData.find(r => String(r._rowIndex) === String(rowIndex));
+  if (!row) return;
+  state.editPembayaranRow = row;
+
+  document.getElementById('editPayNama').textContent = row.namaMurid;
+  document.getElementById('editPayNomor').textContent = row.nomorFormulir;
+  document.getElementById('editPayFormulir').value = row.uangFormulir || '';
+  document.getElementById('editPaySPP').value = row.uangSPP || '';
+  document.getElementById('editPayKegiatan').value = row.uangKegiatan || '';
+  hitungTotalModal();
+
+  document.getElementById('pembayaranModal').classList.remove('hidden');
+}
+
+function hitungTotalModal() {
+  const f = parseFloat(document.getElementById('editPayFormulir').value) || 0;
+  const s = parseFloat(document.getElementById('editPaySPP').value) || 0;
+  const k = parseFloat(document.getElementById('editPayKegiatan').value) || 0;
+  const el = document.getElementById('editPayTotal');
+  if (el) el.textContent = formatRupiah(f + s + k);
+}
+
+async function savePembayaran() {
+  const row = state.editPembayaranRow;
+  if (!row) return;
+
+  const uangFormulir = parseFloat(document.getElementById('editPayFormulir').value) || 0;
+  const uangSPP      = parseFloat(document.getElementById('editPaySPP').value) || 0;
+  const uangKegiatan = parseFloat(document.getElementById('editPayKegiatan').value) || 0;
+
+  const btn = document.getElementById('btnSavePembayaran');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Menyimpan...';
+
+  try {
+    const res = await apiCall('addPembayaran', {
+      token: state.token,
+      _rowIndex: row._rowIndex,
+      uangFormulir,
+      uangSPP,
+      uangKegiatan
+    });
+
+    if (res.success) {
+      showToast(res.message, 'success');
+      closeModal('pembayaranModal');
+      loadPembayaran();
+      loadDashboard();
+    } else {
+      showToast(res.message || 'Gagal menyimpan pembayaran.', 'error');
+    }
+  } catch (err) {
+    showToast('Gagal terhubung ke server.', 'error');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-save"></i> Simpan Pembayaran';
+  }
+}
+
+// ══════════════════════════════════════════════════════════
+// CETAK PDF — Bukti Pendaftaran
+// ══════════════════════════════════════════════════════════
+function cetakPDF(dataIndex) {
+  const row = state.allData[dataIndex];
+  if (!row) {
+    showToast('Data tidak ditemukan.', 'error');
+    return;
+  }
+
+  // BUG FIX: jika library jsPDF/autoTable gagal dimuat (mis. CDN diblokir),
+  // tombol "Unduh Bukti PDF" sebelumnya tidak memberi tahu apa pun ke
+  // pengguna. Sekarang ditangkap dan ditampilkan lewat toast.
+  if (!window.jspdf || !window.jspdf.jsPDF) {
+    showToast('Gagal membuat PDF: library jsPDF tidak termuat. Periksa koneksi internet Anda.', 'error');
+    return;
+  }
+
+  try {
+    cetakPDFInternal(row);
+  } catch (err) {
+    console.error('Gagal membuat PDF:', err);
+    showToast('Gagal membuat PDF: ' + err.message, 'error');
+  }
+}
+
+// MENU BARU: unduh bukti pendaftaran PDF dari _rowIndex (dipakai dari menu
+// Input Pembayaran, yang tidak menyimpan seluruh field calon murid).
+async function cetakPDFByRowIndex(rowIndex) {
+  let idx = state.allData.findIndex(r => r._rowIndex === rowIndex);
+
+  if (idx === -1) {
+    // Data lengkap belum termuat (mis. baru buka menu Pembayaran) — muat dulu.
+    await loadData();
+    idx = state.allData.findIndex(r => r._rowIndex === rowIndex);
+  }
+
+  if (idx === -1) {
+    showToast('Data pendaftar untuk baris ini tidak ditemukan.', 'error');
+    return;
+  }
+
+  cetakPDF(idx);
+}
+
+function cetakPDFInternal(row) {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+
+  const W  = 210;
+  const mg = 18;
+
+  const hijauTua  = [26,  92,  56];
+  const hijauMuda = [45, 158,  95];
+  const mint      = [232, 247, 239];
+  const merah     = [229,  62,  62];
+
+  // ── KOP SURAT ──────────────────────────────────────────
+  doc.setFillColor(...hijauTua);
+  doc.rect(0, 0, W, 44, 'F');
+
+  doc.setFillColor(...hijauMuda);
+  doc.rect(0, 44, W, 2.5, 'F');
+
+  // Logo lingkaran
+  doc.setFillColor(255, 255, 255);
+  doc.circle(mg + 11, 22, 11, 'F');
+  doc.setFontSize(7.5);
+  doc.setTextColor(...hijauTua);
+  doc.setFont('helvetica', 'bold');
+  doc.text('SMP', mg + 7.5, 19);
+  doc.text('MUHAM', mg + 5, 23);
+  doc.text('12', mg + 9, 27);
+
+  // Nama sekolah
+  doc.setTextColor(255, 255, 255);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(15);
+  doc.text('SMP MUHAMMADIYAH 12', mg + 28, 16);
+
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(9);
+  doc.text('Jl. Dr. Susilo I Kel.Grogol Kec. Grogol Petamburan Jakarta Barat', mg + 28, 23);
+  doc.text('Email: muhammadiyah12.grogol@gmail.com', mg + 28, 29);
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(8.5);
+  doc.setTextColor(200, 240, 220);
+  doc.text('SPMB 2026/2027', W - mg, 36, { align: 'right' });
+
+  // ── JUDUL ──────────────────────────────────────────────
+  doc.setFillColor(...mint);
+  doc.rect(mg, 52, W - mg*2, 13, 'F');
+  doc.setTextColor(...hijauTua);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(12.5);
+  doc.text('BUKTI PENDAFTARAN CALON MURID BARU', W/2, 60.5, { align: 'center' });
+
+  // ── INFO FORMULIR ──────────────────────────────────────
+  doc.setFontSize(8.5);
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(90, 90, 90);
+  doc.text(
+    `No. Formulir: ${row.nomorFormulir}   |   Tanggal Daftar: ${formatDate(row.tanggalDaftar)}`,
+    W/2, 69, { align: 'center' }
+  );
+
+  // ── BADGE STATUS ───────────────────────────────────────
+  const isLunas   = row.statusBayar === 'Lunas';
+  const badgeClr  = isLunas ? hijauTua : merah;
+  const badgeBg   = isLunas ? mint     : [255, 238, 238];
+
+  doc.setFillColor(...badgeBg);
+  doc.roundedRect(W/2 - 30, 72, 60, 11, 3, 3, 'F');
+  doc.setDrawColor(...badgeClr);
+  doc.setLineWidth(0.5);
+  doc.roundedRect(W/2 - 30, 72, 60, 11, 3, 3, 'S');
+  doc.setTextColor(...badgeClr);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(10);
+  doc.text(isLunas ? '✓  LUNAS' : '✗  BELUM LUNAS', W/2, 79, { align: 'center' });
+
+  // ── TABEL IDENTITAS ────────────────────────────────────
+  doc.autoTable({
+    startY: 89,
+    margin: { left: mg, right: mg },
+    head: [['IDENTITAS CALON PESERTA DIDIK', '']],
+    body: [
+      ['Nama Lengkap',          row.namaMurid || '-'],
+      ['Jenis Kelamin',         row.jenisKelamin || '-'],
+      ['Tempat / Tgl Lahir',    `${row.tempatLahir || '-'}, ${formatDate(row.tanggalLahir)}`],
+      ['Nama Orang Tua / Wali', row.namaOrtu || '-'],
+    ],
+    columnStyles: {
+      0: { cellWidth: 58, fontStyle: 'bold', fillColor: mint, textColor: hijauTua },
+      1: { cellWidth: 'auto' }
+    },
+    headStyles: {
+      fillColor: hijauTua, textColor: [255, 255, 255],
+      fontStyle: 'bold', fontSize: 9.5, halign: 'left',
+    },
+    bodyStyles: { fontSize: 10, textColor: [40, 40, 40] },
+    alternateRowStyles: { fillColor: [249, 253, 251] },
+    theme: 'grid',
+  });
+
+  const y2 = doc.lastAutoTable.finalY + 3;
+
+  // ── TABEL ASAL SEKOLAH ─────────────────────────────────
+  doc.autoTable({
+    startY: y2,
+    margin: { left: mg, right: mg },
+    head: [['ASAL SEKOLAH & KONTAK', '']],
+    body: [
+      ['Asal SD / MI',           row.asalSD    || '-'],
+      ['Tahun Lulus',            row.tahunLulus || '-'],
+      ['Alamat Rumah',           row.alamat     || '-'],
+      ['No. Telepon / WA',       row.noTlp      || '-'],
+      ['Keterangan',             row.keterangan || '-'],
+    ],
+    columnStyles: {
+      0: { cellWidth: 58, fontStyle: 'bold', fillColor: mint, textColor: hijauTua },
+      1: { cellWidth: 'auto' }
+    },
+    headStyles: {
+      fillColor: hijauTua, textColor: [255, 255, 255],
+      fontStyle: 'bold', fontSize: 9.5, halign: 'left',
+    },
+    bodyStyles: { fontSize: 10, textColor: [40, 40, 40] },
+    alternateRowStyles: { fillColor: [249, 253, 251] },
+    theme: 'grid',
+  });
+
+  const y3 = doc.lastAutoTable.finalY + 3;
+
+  // ── TABEL PEMBAYARAN ───────────────────────────────────
+  const uangFormulir  = parseFloat(row.uangFormulir)  || 0;
+  const uangSPP       = parseFloat(row.uangSPP)       || 0;
+  const uangKegiatan  = parseFloat(row.uangKegiatan)  || 0;
+  const totalBayar    = uangFormulir + uangSPP + uangKegiatan;
+
+  doc.autoTable({
+    startY: y3,
+    margin: { left: mg, right: mg },
+    head: [['RINCIAN PEMBAYARAN', '']],
+    body: [
+      ['Uang Formulir',  formatRupiah(uangFormulir)],
+      ['Uang SPP',       formatRupiah(uangSPP)],
+      ['Uang Kegiatan',  formatRupiah(uangKegiatan)],
+      ['TOTAL',          formatRupiah(totalBayar)],
+    ],
+    columnStyles: {
+      0: { cellWidth: 58, fontStyle: 'bold', fillColor: mint, textColor: hijauTua },
+      1: { cellWidth: 'auto', halign: 'right' }
+    },
+    headStyles: {
+      fillColor: hijauTua, textColor: [255, 255, 255],
+      fontStyle: 'bold', fontSize: 9.5, halign: 'left',
+    },
+    bodyStyles: { fontSize: 10, textColor: [40, 40, 40] },
+    alternateRowStyles: { fillColor: [249, 253, 251] },
+    didParseCell: (data) => {
+      // Bold & warna hijau pada baris TOTAL
+      if (data.row.index === 3) {
+        data.cell.styles.fontStyle = 'bold';
+        data.cell.styles.fillColor = hijauTua;
+        data.cell.styles.textColor = [255, 255, 255];
+      }
+    },
+    theme: 'grid',
+  });
+
+  // ── AREA TANDA TANGAN ──────────────────────────────────
+  const ySign = doc.lastAutoTable.finalY + 12;
+
+  if (ySign + 38 < 275) {
+    doc.setDrawColor(...hijauTua);
+    doc.setLineWidth(0.3);
+
+    // TTD Ortu
+    doc.rect(mg, ySign, 62, 36);
+    doc.setTextColor(...hijauTua);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8);
+    doc.text('Orang Tua / Wali', mg + 31, ySign + 7, { align: 'center' });
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7.5);
+    doc.setTextColor(100, 100, 100);
+    doc.text(`(${row.namaOrtu || ''})`, mg + 31, ySign + 32, { align: 'center' });
+
+    // TTD Panitia
+    doc.rect(W - mg - 62, ySign, 62, 36);
+    doc.setTextColor(...hijauTua);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8);
+    doc.text('Panitia PPDB', W - mg - 31, ySign + 7, { align: 'center' });
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7.5);
+    doc.setTextColor(100, 100, 100);
+    doc.text('SMP Muhammadiyah 12', W - mg - 31, ySign + 32, { align: 'center' });
+  }
+
+  // ── FOOTER ─────────────────────────────────────────────
+  doc.setFillColor(...hijauTua);
+  doc.rect(0, 285, W, 12, 'F');
+  doc.setTextColor(210, 240, 225);
+  doc.setFont('helvetica', 'italic');
+  doc.setFontSize(7);
+  doc.text(
+    `Dokumen ini sebagai bukti pendaftaran di SMP Muhammadiyah 12. Dicetak: ${new Date().toLocaleString('id-ID')}`,
+    W/2, 292, { align: 'center' }
+  );
+
+  // ── WATERMARK ──────────────────────────────────────────
+  doc.setTextColor(...badgeClr);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(52);
+  doc.setGState(new doc.GState({ opacity: 0.04 }));
+  doc.text(isLunas ? 'LUNAS' : 'BELUM LUNAS', W/2, 180, { align: 'center', angle: 45 });
+  doc.setGState(new doc.GState({ opacity: 1 }));
+
+  // Simpan PDF
+  const namaFile = `BuktiSPMB_${row.nomorFormulir}_${(row.namaMurid || '').replace(/\s+/g,'-')}.pdf`;
+  doc.save(namaFile);
+  showToast(`PDF "${namaFile}" berhasil diunduh.`, 'success');
+}
+
+// ══════════════════════════════════════════════════════════
+// API HELPER
+// ══════════════════════════════════════════════════════════
+async function apiCall(action, params = {}) {
+  if (!API_URL || API_URL.includes('GANTI_DENGAN')) {
+    return { success: false, message: 'API URL belum dikonfigurasi. Edit variabel API_URL di app.js.' };
+  }
+
+  const allParams = { action, ...params };
+  Object.keys(allParams).forEach(k => {
+    if (allParams[k] === undefined || allParams[k] === null) delete allParams[k];
+  });
+
+  const qs  = new URLSearchParams(allParams).toString();
+  const url = `${API_URL}?${qs}`;
+
+  try {
+    const res = await fetch(url, { method: 'GET', redirect: 'follow' });
+    if (!res.ok) return { success: false, message: `HTTP Error: ${res.status}` };
+    const text = await res.text();
+    try {
+      return JSON.parse(text);
+    } catch {
+      return { success: false, message: 'Response dari server bukan JSON.' };
+    }
+  } catch (err) {
+    return { success: false, message: 'Gagal terhubung: ' + err.message };
+  }
+}
+
+async function testAPI() {
+  console.log('Testing API:', API_URL);
+  const r = await apiCall('ping');
+  console.log('Ping result:', r);
+  return r;
+}
+
+// ══════════════════════════════════════════════════════════
+// UTILITIES
+// ══════════════════════════════════════════════════════════
+function formatDate(d) {
+  if (!d) return '-';
+  try {
+    return new Date(d).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' });
+  } catch { return d; }
+}
+
+function formatRupiah(num) {
+  if (!num && num !== 0) return 'Rp 0';
+  return 'Rp ' + Number(num).toLocaleString('id-ID');
+}
+
+function cleanPhone(phone) {
+  if (!phone) return '';
+  return String(phone).replace(/\D/g, '').replace(/^0/, '62');
+}
+
+function showToast(msg, type = 'info') {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.className = `toast ${type}`;
+  toast.classList.remove('hidden');
+  setTimeout(() => toast.classList.add('hidden'), 3500);
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.add('hidden');
+}
+
+// CSS spin animation
+const styleEl = document.createElement('style');
+styleEl.textContent = '@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}';
+document.head.appendChild(styleEl);
+</script>
+</body>
+</html>

@@ -8,7 +8,7 @@
 var SPREADSHEET_ID  = '1CWPOt64AeDgnJuRXpsxXnVVog0p6335-o4pCSaz-I0M'; // ← WAJIB GANTI
 var SHEET_NAME      = 'DataPPDB';
 var ADMIN_USERNAME  = 'admin';
-var ADMIN_PASSWORD  = admin1234';   // ← Ganti password Anda
+var ADMIN_PASSWORD  = 'siapmaju';   // ← Ganti password Anda
 var SECRET_TOKEN    = 'TOKEN_SMPM12_2026'; // ← Bisa diganti string unik apapun
 
 // ============================================================
